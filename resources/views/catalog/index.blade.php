@@ -7,7 +7,7 @@
         </div>
     </x-slot>
 
-    <div class="py-6">
+    <div class="py-6 max-w-7xl mx-auto">
         <x-card-machine/>
     </div>
 
