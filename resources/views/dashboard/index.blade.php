@@ -85,7 +85,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <!-- Perforadoras -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-                    <div class="bg-gradient-to-r from-yellow-500 to-yellow-600 px-6 py-4">
+                    <div class="bg-gradient-to-r from-yellow-600/85 to-yellow-600 px-6 py-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -130,7 +130,7 @@
 
                 <!-- Excavadoras -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-4">
+                    <div class="bg-gradient-to-r from-yellow-600/85 to-yellow-600 px-6 py-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -174,7 +174,7 @@
 
                 <!-- Camiones -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-200">
-                    <div class="bg-gradient-to-r from-green-500 to-green-600 px-6 py-4">
+                    <div class="bg-gradient-to-r from-yellow-600/85 to-yellow-600 px-6 py-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
@@ -219,4 +219,6 @@
 
         </div>
     </div>
+
+
 </x-app-layout>

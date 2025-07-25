@@ -7,6 +7,8 @@
         </div>
     </x-slot>
 
-
+    <div class="py-6">
+        <x-card-machine/>
+    </div>
 
 </x-app-layout>

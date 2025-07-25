@@ -30,8 +30,7 @@
                             <p class="text-sm text-yellow-100">Ubicación: Mina Norte - Sector A</p>
                         </div>
                         <div class="text-right">
-                            <div
-                                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-500 text-white">
+                            <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-500 text-white">
                                 <div class="w-2 h-2 bg-white rounded-full mr-2"></div>
                                 Operativa
                             </div>
@@ -53,222 +52,52 @@
                         </div>
 
                         <form class="p-6 space-y-4" id="inspectionForm">
+                            @csrf
                             <!-- Items de Inspección -->
                             <div class="space-y-3">
-                                <!-- Item 1 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="cuchara"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar el estado de la cuchara">
-                                        <label for="cuchara" class="text-gray-700 font-medium">Revisar el estado de la
-                                            cuchara</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="cuchara">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
+                                @php
+                                    $inspectionItems = [
+                                        'cuchara' => 'Revisar el estado de la cuchara',
+                                        'llantas' => 'Revisar el estado de las llantas',
+                                        'articulacion' => 'Revisar engrase en la articulación central superior e inferior',
+                                        'cilindro' => 'Revisar engrase en cilindro de dirección',
+                                        'botellones' => 'Revisar engrase en los botellones de levante y volteo',
+                                        'zbar' => 'Revisar engrase en Z-BAR',
+                                        'dogbone' => 'Revisar engrase en DOG-BONE',
+                                        'brazo' => 'Revisar engrase en el brazo/puño de cuchara',
+                                        'tablero' => 'Verificar estado del tablero del control y display',
+                                        'extintores' => 'Revisar extintores y verificar que esté cargado'
+                                    ];
+                                @endphp
 
-                                <!-- Item 2 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="llantas"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar el estado de las llantas">
-                                        <label for="llantas" class="text-gray-700 font-medium">Revisar el estado de las
-                                            llantas</label>
+                                @foreach($inspectionItems as $key => $item)
+                                    <div class="inspection-item flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
+                                        <div class="flex items-center space-x-3">
+                                            <input type="checkbox"
+                                                   id="{{ $key }}"
+                                                   name="items[{{ $key }}]"
+                                                   class="inspection-check w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500"
+                                                   data-item="{{ $item }}">
+                                            <label for="{{ $key }}" class="text-gray-700 font-medium">{{ $item }}</label>
+                                        </div>
+                                        <button type="button"
+                                                class="issue-btn text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors hidden"
+                                                data-target="{{ $key }}"
+                                                data-item="{{ $item }}">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="llantas">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 3 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="articulacion"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar engrase en la articulación central superior e inferior">
-                                        <label for="articulacion" class="text-gray-700 font-medium">Revisar engrase en la
-                                            articulación central superior e inferior</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="articulacion">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 4 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="cilindro"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar engrase en cilindro de dirección">
-                                        <label for="cilindro" class="text-gray-700 font-medium">Revisar engrase en cilindro de
-                                            dirección</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="cilindro">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 5 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="botellones"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar engrase en los botellones de levante y volteo">
-                                        <label for="botellones" class="text-gray-700 font-medium">Revisar engrase en los
-                                            botellones de levante y volteo</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="botellones">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 6 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="zbar"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar engrase en Z-BAR">
-                                        <label for="zbar" class="text-gray-700 font-medium">Revisar engrase en Z-BAR</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="zbar">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 7 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="dogbone"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar engrase en DOG-BONE">
-                                        <label for="dogbone" class="text-gray-700 font-medium">Revisar engrase en DOG-BONE</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="dogbone">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 8 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="brazo"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar engrase en el brazo/puño de cuchara">
-                                        <label for="brazo" class="text-gray-700 font-medium">Revisar engrase en el brazo/puño de
-                                            cuchara</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="brazo">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 9 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="tablero"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Verificar estado del tablero del control y display">
-                                        <label for="tablero" class="text-gray-700 font-medium">Verificar estado del tablero del
-                                            control y display</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="tablero">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <!-- Item 10 -->
-                                <div
-                                    class="flex items-center justify-between p-4 rounded-lg border border-gray-200 hover:border-yellow-300 transition-colors">
-                                    <div class="flex items-center space-x-3">
-                                        <input type="checkbox" id="extintores"
-                                               class="w-5 h-5 text-yellow-600 border-gray-300 rounded focus:ring-yellow-500 inspection-check"
-                                               data-item="Revisar extintores y verificar que esté cargado">
-                                        <label for="extintores" class="text-gray-700 font-medium">Revisar extintores y verificar
-                                            que esté cargado</label>
-                                    </div>
-                                    <button type="button"
-                                            class="text-red-500 hover:text-red-700 p-2 rounded-full hover:bg-red-50 transition-colors issue-btn hidden"
-                                            data-target="extintores">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                                  clip-rule="evenodd"/>
-                                        </svg>
-                                    </button>
-                                </div>
+                                @endforeach
                             </div>
 
                             <!-- Observaciones Generales -->
                             <div class="mt-6">
-                                <label for="observaciones" class="block text-sm font-medium text-gray-700 mb-2">Observaciones
-                                    Generales</label>
-                                <textarea id="observaciones" rows="3"
+                                <label for="observaciones" class="block text-sm font-medium text-gray-700 mb-2">Observaciones Generales</label>
+                                <textarea id="observaciones"
+                                          name="observaciones"
+                                          rows="3"
                                           class="block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500"
                                           placeholder="Ingrese observaciones adicionales sobre la inspección..."></textarea>
                             </div>
@@ -278,18 +107,15 @@
                                 <div class="flex items-center space-x-2 text-sm text-gray-600">
                                     <span>Progreso:</span>
                                     <div class="w-32 bg-gray-200 rounded-full h-2">
-                                        <div class="bg-yellow-600 h-2 rounded-full transition-all duration-300" style="width: 0%"
-                                             id="progressBar"></div>
+                                        <div class="progress-bar bg-yellow-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
                                     </div>
-                                    <span id="progressText">0/10</span>
+                                    <span class="progress-text">0/10</span>
                                 </div>
                                 <div class="flex space-x-3">
-                                    <button type="button"
-                                            class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium transition-colors">
+                                    <button type="button" class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium transition-colors">
                                         Omitir
                                     </button>
-                                    <button type="submit"
-                                            class="px-6 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md font-medium transition-colors">
+                                    <button type="submit" class="px-6 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md font-medium transition-colors">
                                         Confirmar Inspección
                                     </button>
                                 </div>
@@ -341,44 +167,38 @@
                             <h3 class="text-white font-semibold">Agendar Mantenimiento</h3>
                         </div>
                         <div class="p-4">
-                            <form class="space-y-4">
+                            <form class="space-y-4" id="maintenanceForm">
+                                @csrf
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Mantenimiento</label>
-                                    <select
-                                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
-                                        <option>Preventivo</option>
-                                        <option>Correctivo</option>
-                                        <option>Emergencia</option>
+                                    <select name="tipo" class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
+                                        <option value="preventivo">Preventivo</option>
+                                        <option value="correctivo">Correctivo</option>
+                                        <option value="emergencia">Emergencia</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Fecha</label>
-                                    <input type="date"
-                                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
+                                    <input type="date" name="fecha" class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Hora</label>
-                                    <input type="time"
-                                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
+                                    <input type="time" name="hora" class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Prioridad</label>
-                                    <select
-                                        class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
-                                        <option>Baja</option>
-                                        <option>Media</option>
-                                        <option>Alta</option>
-                                        <option>Crítica</option>
+                                    <select name="prioridad" class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm">
+                                        <option value="baja">Baja</option>
+                                        <option value="media">Media</option>
+                                        <option value="alta">Alta</option>
+                                        <option value="critica">Crítica</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
-                                    <textarea rows="3"
-                                              class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm"
-                                              placeholder="Describa el trabajo requerido..."></textarea>
+                                    <textarea name="descripcion" rows="3" class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 text-sm" placeholder="Describa el trabajo requerido..."></textarea>
                                 </div>
-                                <button type="button"
-                                        class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors text-sm">
+                                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors text-sm">
                                     Agendar Mantenimiento
                                 </button>
                             </form>
@@ -392,6 +212,14 @@
                         </div>
                         <div class="p-4">
                             <div class="space-y-3">
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Hace 2h - Inspección completa</span>
+                                </div>
+                                <div class="flex items-center text-xs">
+                                    <div class="w-2 h-2 bg-yellow-500 rounded-full mr-2"></div>
+                                    <span class="text-gray-600">Hace 1d - Mantenimiento preventivo</span>
+                                </div>
                                 <div class="flex items-center text-xs">
                                     <div class="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
                                     <span class="text-gray-600">Hace 3d - Revisión de seguridad</span>
@@ -417,24 +245,23 @@
             <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
                 <div class="flex justify-between items-center p-6 border-b border-gray-200">
                     <h3 class="text-lg font-semibold text-gray-900">Reportar Problema</h3>
-                    <button class="text-gray-400 hover:text-gray-600" onclick="closeIssueModal()">
+                    <button class="close-modal text-gray-400 hover:text-gray-600">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
 
-                <form class="p-6 space-y-4">
+                <form class="p-6 space-y-4" id="issueForm">
+                    @csrf
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Componente</label>
-                        <input type="text" id="modalComponent"
-                               class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
-                               readonly>
+                        <input type="text" id="modalComponent" name="componente" class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500" readonly>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Tipo de Problema</label>
-                        <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
+                        <select name="tipo_problema" class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
                             <option>Fuga de aceite</option>
                             <option>Desgaste excesivo</option>
                             <option>Ruido anormal</option>
@@ -447,24 +274,22 @@
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Severidad</label>
-                        <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
-                            <option value="baja" class="text-green-600">Baja - Operación normal</option>
-                            <option value="media" class="text-yellow-600">Media - Requiere atención</option>
-                            <option value="alta" class="text-orange-600">Alta - Reparación urgente</option>
-                            <option value="critica" class="text-red-600">Crítica - Detener operación</option>
+                        <select name="severidad" class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
+                            <option value="baja">Baja - Operación normal</option>
+                            <option value="media">Media - Requiere atención</option>
+                            <option value="alta">Alta - Reparación urgente</option>
+                            <option value="critica">Crítica - Detener operación</option>
                         </select>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Descripción del Problema</label>
-                        <textarea rows="3"
-                                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
-                                  placeholder="Describa detalladamente el problema encontrado..." required></textarea>
+                        <textarea name="descripcion" rows="3" class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500" placeholder="Describa detalladamente el problema encontrado..." required></textarea>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Acción Recomendada</label>
-                        <select class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
+                        <select name="accion_recomendada" class="w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500">
                             <option>Agendar mantenimiento preventivo</option>
                             <option>Reparación inmediata</option>
                             <option>Reemplazo de componente</option>
@@ -474,12 +299,10 @@
                     </div>
 
                     <div class="flex justify-end space-x-3 pt-4">
-                        <button type="button" onclick="closeIssueModal()"
-                                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium transition-colors">
+                        <button type="button" class="close-modal px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 font-medium transition-colors">
                             Cancelar
                         </button>
-                        <button type="submit"
-                                class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md font-medium transition-colors">
+                        <button type="submit" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md font-medium transition-colors">
                             Reportar Problema
                         </button>
                     </div>
@@ -487,6 +310,4 @@
             </div>
         </div>
     </div>
-
-
 </x-app-layout>

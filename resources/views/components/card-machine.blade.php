@@ -13,7 +13,7 @@
             <p class="mt-auto">Ancho: 12.5 metros </p>
             <p class="mt-auto">Alto: 12.5 metros </p>
         </div>
-        <a href="/{{ route('machines.perforadoras') }}"
+        <a href="/{{ route('catalog.index') }}"
         class="mt-2 underline text-gray-200 hover:text-white font-semibold">Información Completa</a>
     </div>
 
