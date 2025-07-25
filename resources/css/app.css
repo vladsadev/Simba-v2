@@ -8,8 +8,7 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-  --font-sans:
-    Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
@@ -22,15 +21,67 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
 }
 
 [x-cloak] {
     display: none;
+}
+
+.scale-102 {
+    transform: scale(1.02);
+}
+
+/* Estilos personalizados para mejorar la UX */
+.inspection-check:checked + label {
+    color: #059669;
+    font-weight: 600;
+}
+
+.inspection-check:checked {
+    background-color: #10b981;
+    border-color: #10b981;
+}
+
+/* Animaciones suaves */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Hover effects mejorados */
+.hover\:scale-105:hover {
+    transform: scale(1.05);
+}
+
+.hover\:shadow-lg:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo del modal */
+#issueModal {
+    backdrop-filter: blur(4px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .lg\:col-span-2 {
+        grid-column: span 1;
+    }
+
+    .flex.items-center.justify-between {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .flex.space-x-3 {
+        width: 100%;
+        justify-content: space-between;
+    }
 }
