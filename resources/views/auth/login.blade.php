@@ -112,8 +112,16 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div class="text-left mt-1 lg:mt-3">
+                        <a href="{{route('register')}}" class="text-yellow-400 text-base underline hover:text-white">Register</a>
+                    </div>
+
                 </div>
+
             </div>
+
+
         </div>
 
 

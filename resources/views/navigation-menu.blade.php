@@ -7,6 +7,7 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-mark class="block h-9 w-auto" />
+{{--                        <x-application-logo class="block h-4 w-auto" />--}}
                     </a>
                 </div>
 
@@ -15,8 +16,14 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link href="{{ route('contacto') }}" :active="request()->routeIs('contacto')">
-                        {{ __('Resources') }}
+                    <x-nav-link href="{{ route('machines.index') }}" :active="request()->routeIs('machines.index')">
+                        {{ __('Machines') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('inspections.index') }}" :active="request()->routeIs('inspections.index')">
+                        {{ __('Inspections') }}
+                    </x-nav-link>
+                    <x-nav-link href="{{ route('reports.index') }}" :active="request()->routeIs('reports.index')">
+                        {{ __('Reports') }}
                     </x-nav-link>
                 </div>
             </div>

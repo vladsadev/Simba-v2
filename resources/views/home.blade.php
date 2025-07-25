@@ -19,12 +19,6 @@
                     </svg>
                 </button>
             </div>
-            <div class="hidden lg:flex lg:gap-x-12">
-                <a href="#"
-                   class="text-sm/6 font-semibold text-white hover:text-gray-200 transition-colors duration-200 drop-shadow-lg">Nosotros</a>
-                <a href="#"
-                   class="text-sm/6 font-semibold text-white hover:text-gray-200 transition-colors duration-200 drop-shadow-lg">Contacto</a>
-            </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <a href="{{ route('register') }}" class="text-sm/6 font-semibold text-white hover:text-gray-200 transition-colors
                 duration-200 drop-shadow-lg">
@@ -75,7 +69,7 @@
 
     <main>
         <!-- Hero section -->
-        <div class="relative isolate overflow-hidden bg-gray-900 pt-14 lg:pt-20 pb-8 sm:pb-12 min-h-screen">
+        <div class="relative isolate overflow-hidden bg-gray-900 pt-6 lg:pt-16 pb-8 sm:pb-12 min-h-screen">
             <!-- Background Image -->
             <img src="{{Vite::asset('resources/images/simbaHome.webp')}}"
                  alt="Equipo minero en operación" class="absolute inset-0 -z-20 size-full object-cover"/>
@@ -93,7 +87,7 @@
             </div>
 
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                <div class="mx-auto max-w-2xl py-16 sm:py-20 lg:py-24 xl:pt-36">
+                <div class="mx-auto max-w-2xl py-16 sm:py-20 lg:py-24 xl:pt-32">
                     <div class="text-center">
                         <h1 class="text-4xl font-bold tracking-tight text-balance text-white sm:text-6xl drop-shadow-2xl">
                             Sistema de Control

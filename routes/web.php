@@ -6,7 +6,15 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::view('/contacto', 'contacto')->name('contacto');
+Route::view('/inspecciones', 'inspections.index')->name('inspections.index');
+
+Route::view('maquinaria', 'machines.index')->name('machines.index');
+Route::view('maquinaria/perforadoras', 'machines.perforadoras')->name('machines.perforadoras');
+Route::view('maquinaria/perforadoras', 'machines.perforadoras')->name('machines.perforadoras');
+
+Route::view('reportes', 'reports.index')->name('reports.index');
+
+
 
 
 Route::middleware([
@@ -15,6 +23,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard.index');
     })->name('dashboard');
 });
