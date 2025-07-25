@@ -8,11 +8,11 @@ Route::get('/', function () {
 
 Route::view('/inspecciones', 'inspections.index')->name('inspections.index');
 
-Route::view('maquinaria', 'machines.index')->name('machines.index');
-Route::view('maquinaria/perforadoras', 'machines.perforadoras')->name('machines.perforadoras');
-Route::view('maquinaria/perforadoras', 'machines.perforadoras')->name('machines.perforadoras');
+Route::view('maquinaria', 'inspections.machines.index')->name('machines.index');
 
 Route::view('reportes', 'reports.index')->name('reports.index');
+
+Route::view('catalogo','catalog.index')->name('catalog.index');
 
 
 
