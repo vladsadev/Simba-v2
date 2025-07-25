@@ -5,12 +5,16 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-red-500 overflow-hidden shadow-xl sm:rounded-lg">
+{{----}}
+    <section class="py-20">
+{{--        Contenedor de elemtos --}}
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-4 md:py-6 lg:py-8 shadow-2xl sm:rounded-lg
+        space-y-4">
+                <x-card-machine/>
 
+                <x-card-machine/>
 
-            </div>
+                <x-card-machine/>
         </div>
-    </div>
+    </section>
 </x-app-layout>
